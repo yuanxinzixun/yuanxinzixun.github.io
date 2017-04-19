@@ -1,0 +1,66 @@
+
+<%
+  var linklist = {
+	    'home':      ['home', 'Home'],
+		'about':     ['samples/about', 'About Us'],
+		'services':  ['samples/services', 'Services'],
+		'portfolio': ['samples/portfolio', 'Portfolio'],
+        'pages': {
+            name: 'Pages',
+            sublinks: {
+                'pricing':	  ['samples/pricing', 'Pricing Table'],
+                'error':	  ['error', 'Error Page'],
+                '404':		  ['404', '404 Page'],
+                'shortcodes': ['samples/shortcodes', 'Shortcodes'],
+            },
+        },
+        'blog': {
+			name: 'Blog',
+			sublinks: {
+				'blog':		 ['blog/blog', 'Blog'],
+				'blog-item': ['blog/blog-item', 'Blog Item'],
+            },
+        },
+        'contact': ['samples/contact', 'Contact'],
+    }
+%>
+
+<% function render_menu(links) {
+    for( link in links ) { %>
+      <li class="<%= (links[link][0] == page.path ? 'active':'')+((links[link].sublinks)?'dropdown':'') %>">
+      <a  href="<%= links[link].sublinks ? '#' : links[link][0] %>"
+          <% if(links[link].sublinks){ %> data-toggle="dropdown"<% } %>
+          class="<%= links[link].sublinks ? 'dropdown-toggle' :''%>"
+      >
+          <%= links[link].name ?links[link].name: links[link][1] %>
+          <% if (links[link].sublinks) { %><span class="caret"></span><% } %>
+      </a>
+      <% if (links[link].sublinks) { %>
+          <span class="dropdown-arrow"></span>
+          <ul class="dropdown-menu">
+              <% render_menu(links[link].sublinks) %>
+          </ul>
+      <% } %>
+      </li>
+  <% }
+ } %>
+
+
+<nav class="navbar navbar-inverse" role="banner">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/"><img src="/images/logo.png" alt="logo"></a>
+		</div>
+		<div class="collapse navbar-collapse navbar-right">
+			<ul class="nav navbar-nav">
+				<% render_menu(linklist) %>
+			</ul>
+		</div>
+	</div>
+</nav><!--/nav-->

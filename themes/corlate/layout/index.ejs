@@ -1,0 +1,47 @@
+<section id="main-slider" class="no-margin">
+	<%- partial('_partial/carousel') %>
+    <a class="prev hidden-xs" href="#main-slider" data-slide="prev">
+        <i class="fa fa-chevron-left"></i>
+    </a>
+    <a class="next hidden-xs" href="#main-slider" data-slide="next">
+        <i class="fa fa-chevron-right"></i>
+    </a>
+</section>
+
+<section id="feature">
+	<%- partial('_partial/features') %>
+</section>
+
+<section id="recent-works">
+	<%- partial('_partial/works') %>
+</section>
+
+<section id="services" class="service-item">
+	<%- partial('_partial/services') %>
+</section>
+
+<section id="middle">
+    <div class="container">
+        <div class="row">
+			<%- partial('_partial/skills') %>
+			<%- partial('_partial/accordion') %>
+        </div><!--/.row-->
+    </div><!--/.container-->
+</section><!--/#middle-->
+
+<section id="content">
+    <div class="container">
+        <div class="row">
+			<%- partial('_partial/tabs') %>
+			<%- partial('_partial/testimonials') %>
+        </div><!--/.row-->
+    <div><!--/.container-->
+</section><!--/#content-->
+
+<section id="partner">
+	<%- partial('_partial/partners') %>
+</section><!--/#partner-->
+
+<section id="conatcat-info">
+	<%- partial('_partial/contact.ejs') %>
+</section><!--/#conatcat-info-->
