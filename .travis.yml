@@ -4,8 +4,15 @@ node_js:
 
 before_install:
 - openssl aes-256-cbc -K $encrypted_0b101188e5d3_key -iv $encrypted_0b101188e5d3_iv -in travis.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+- eval $(ssh-agent)
+- ssh-add ~/.ssh/id_rsa
+- cp .travis/ssh_config ~/.ssh/config
+- git config --global user.name "yuanxinzixun"
+- git config --global user.email "342096198@qq.com"
 - npm install -g hexo-cli
 - npm install
-- hexo g
 
-script: hexo d
+script:
+- hexo clean
+- hexo d -g
