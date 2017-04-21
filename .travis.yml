@@ -1,3 +1,16 @@
+language: node_js
+node_js:
+ - "node"
+
 before_install:
-- openssl aes-256-cbc -K $encrypted_0b101188e5d3_key -iv $encrypted_0b101188e5d3_iv
-  -in travis.enc -out travis -d
+- openssl aes-256-cbc -K $encrypted_0b101188e5d3_key -iv $encrypted_0b101188e5d3_iv -in travis.enc -out travis -d
+- npm install -g hexo-cli
+- npm install
+
+script: hexo g
+
+deploy:
+  provider: script
+  script: hexo deploy
+  on:
+    branch: master
